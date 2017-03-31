@@ -1,0 +1,104 @@
+{%  extends "::layout.html.twig"  %}
+
+{% block titre %} Accueil {% endblock %}
+
+{% block navigation %}
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="{{ path("utilisateurs_homepage") }}"><span class="glyphicon glyphicon-home"></span> Accueil</a>
+                </li>
+                <li>
+                    <a href="{{ path("map_show_lieux") }}"><span class="glyphicon glyphicon-map-marker"></span> Référencement</a>
+                </li>
+                <li>
+                    <a href="{{ path("map_show_parcelles") }}"><span class="glyphicon glyphicon-unchecked"></span> Bornage</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a data-toggle="modal" data-target="#conn" href="#" ><span class="glyphicon glyphicon-triangle-right"></span> Connexion</a>
+            </li>
+            <li>
+              <a href="{{ path("utilisateurs_inscription") }}"><span class="glyphicon glyphicon-list-alt"></span> Obtenir un compte</a>
+            </li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<!-- Modal -->
+  <div id="conn" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Connectez vous</h4>
+              </div>
+              <div class="modal-body">
+              <p>
+                <center>
+                      {% if error %}
+                          {# message d'erreur récupérable dans error.message #}
+                            <div class="alert alert-danger">Login ou Mot de passe incorrect !</div>
+                      {% endif %}
+                </center>
+              <div class="alert alert-info">
+              {# Le formulaire, avec URL de soumission vers la route « login_check » comme on l'a vu #}
+                <form action="{{ path('login_check') }}" method="post">
+                      <label for="username">Login :</label>
+                      <input class="form-control" type="email" id="username" name="_username" value="{{ last_username }}" />
+                      <br/>
+                      <label for="password">Password :</label>
+                      <input class="form-control" type="password" id="password" name="_password" />
+                      <br />
+                      <input class="btn btn-primary" type="submit" value="Connexion" />
+                </form>
+                </div>
+                {# Fin du formulaire  #}
+              </p>
+              </div>
+              <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+              </div>
+              </div>
+
+              </div>
+              </div> <!-- fin modal -->
+{% endblock %}
+
+{% block pageContent %}
+
+<!-- Page Content -->
+<div class="container">
+      {%include("UtilisateursBundle:Utilisateurs:slide.html.twig")%}
+
+    <!-- Project One -->
+    <div class="row">
+        <div class="col-lg-6">
+          <center>
+              <div class="alert alert-info">
+                <h3>ici du blabla (à remplir quand j'aurai de l'inspiration ce soir lol)</h3>
+              </div>
+          </center>
+        </div>
+        <div class="col-lg-6">
+          <center>
+              <div class="alert alert-info">
+                  <h3>ici du bla bla car (thierno thiam)</h3>
+              </div>
+          </center>
+        </div>
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->
+{% endblock %}
